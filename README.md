@@ -1,6 +1,6 @@
-# [Start Bootstrap - Creative](https://startbootstrap.com/template-overviews/creative/)
+# [Cocineros-Unidos]
 
-[Creative](http://startbootstrap.com/template-overviews/creative/) is a one page creative theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
+[Cocineros Unidos](http://startbootstrap.com/template-overviews/creative/) es un sitio web orientado a la gastronomia, desarrollado por María José Novoa y Daniel Gutiérrez, estudiantes de Informática de [INACAP](http://portales.inacap.cl/).
 
 ## Preview
 
