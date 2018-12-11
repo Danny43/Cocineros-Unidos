@@ -89,7 +89,7 @@ include_once '/../Connection.php';
         $sql = "DELETE FROM composicion WHERE ingrediente_nombre = ? AND receta_nombre = ?";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("s", $usuario->nombre);
+        $stmt->bind_param("ss", $composicion->ingrediente_nombre->nombre, $composicion->receta_nombre->nombre);
         $ok = $stmt->execute();
 
         $this->desconectar();

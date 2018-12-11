@@ -8,7 +8,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Creative - Start Bootstrap Theme</title>
+        <title>Iniciar Sesion | Cocineros Unidos</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +24,21 @@
         <!-- Custom styles for this template -->
         <link href="css/creative.min.css" rel="stylesheet">
 
+        <style>
+            .tarjetaInicioSesion{
+                
+                margin: auto;
+                height: 500px;
+                
+
+            }
+            .separacion{
+                margin-top: 50px;
+            }
+
+        </style>
+
+
     </head>
 
     <body id="page-top">
@@ -31,7 +46,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Cocineros Unidos</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,11 +73,13 @@
             <div class="container my-auto">
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
-                        <div class="card w-50">
+                        <div class="card w-50 tarjetaInicioSesion">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Button</a>
+                                <div class="tarjetaFormulario">
+                                    <input type="text" class="form-control separacion" placeholder="Nombre de Usuario" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="password" class="form-control separacion" placeholder="Contraseña" aria-describedby="basic-addon1">
+                                    <a class="btn btn-primary btn-xl js-scroll-trigger separacion" href="#about">Iniciar Sesion</a>
+                                </div>
                             </div>
                         </div>
                     </div>
