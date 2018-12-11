@@ -2,7 +2,7 @@
 
     class Receta{
         
-        public $nomrbe;
+        public $nombre;
         public $descripcion;
         public $creador;
         
