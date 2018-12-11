@@ -26,14 +26,23 @@
 
         <style>
             .tarjetaInicioSesion{
-                
+
                 margin: auto;
                 height: 500px;
-                
-
+            }
+            .titulo{
+                color: gray;
+            }
+            .tarjetaFormulario{
+                margin-top: 20px;
             }
             .separacion{
-                margin-top: 50px;
+                margin-top: 40px;
+            }
+            .logo{
+                height: 64px;
+                width: 64px;
+                margin-top: 10px;
             }
 
         </style>
@@ -75,17 +84,16 @@
                     <div class="col-lg-10 mx-auto">
                         <div class="card w-50 tarjetaInicioSesion">
                             <div class="card-body">
+                                <img class="logo" src="img/logo.png"/>
+                                <h2 class="titulo">Iniciar Sesion</h2>
                                 <div class="tarjetaFormulario">
                                     <input type="text" class="form-control separacion" placeholder="Nombre de Usuario" aria-label="Username" aria-describedby="basic-addon1">
                                     <input type="password" class="form-control separacion" placeholder="Contraseña" aria-describedby="basic-addon1">
                                     <a class="btn btn-primary btn-xl js-scroll-trigger separacion" href="#about">Iniciar Sesion</a>
+                                    <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-8 mx-auto">
-                        <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Iniciar Sesion</a>
                     </div>
                 </div>
             </div>
