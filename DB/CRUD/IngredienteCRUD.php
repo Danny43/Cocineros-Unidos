@@ -1,7 +1,7 @@
 <?php
 
-include_once '/../../Objects/Ingrediente.php';
-include_once '/../Connection.php';
+include_once 'Objects/Ingrediente.php';
+include_once 'DB/Connection.php';
 
     class IngredienteCRUD extends Connection{
         

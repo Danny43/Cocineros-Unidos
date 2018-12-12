@@ -1,9 +1,9 @@
 <?php
 
-include_once '/../../Objects/Receta.php';
-include_once '/../../Objects/Usuario.php';
-include_once 'UsuarioCRUD.php';
-include_once '/../Connection.php';
+include_once 'Objects/Receta.php';
+include_once 'Objects/Usuario.php';
+include_once 'DB/CRUD/UsuarioCRUD.php';
+include_once 'DB/Connection.php';
 
 class RecetaCRUD extends Connection {
 
