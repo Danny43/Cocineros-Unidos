@@ -1,11 +1,11 @@
 <?php
 
-include_once '/../../Objects/Composicion.php';
-include_once '/../../Objects/Receta.php';
-include_once 'RecetaCRUD.php';
-include_once '/../../Objects/Ingrediente.php';
-include_once 'IngredienteCRUD.php';
-include_once '/../Connection.php';
+include_once 'Objects/Composicion.php';
+include_once 'Objects/Receta.php';
+include_once 'DB/CRUD/RecetaCRUD.php';
+include_once 'Objects/Ingrediente.php';
+include_once 'DB/CRUD/IngredienteCRUD.php';
+include_once 'DB/Connection.php';
 
 
     class ComposicionCRUD extends Connection{

@@ -1,11 +1,11 @@
 <?php
 
-include_once '/../../Objects/Calificacion.php';
-include_once '/../../Objects/Usuario.php';
-include_once 'UsuarioCRUD.php';
-include_once '/../../Objects/Receta.php';
-include_once 'RecetaCRUD.php';
-include_once '/../Connection.php';
+include_once 'Objects/Calificacion.php';
+include_once 'Objects/Usuario.php';
+include_once 'DB/CRUD/UsuarioCRUD.php';
+include_once 'Objects/Receta.php';
+include_once 'DB/CRUD/RecetaCRUD.php';
+include_once 'DB/Connection.php';
 
 class CalificacionCRUD extends Connection {
 
