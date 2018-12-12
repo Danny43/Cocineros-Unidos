@@ -41,10 +41,10 @@
                             <a class="nav-link js-scroll-trigger" href="#about">Acerca de Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                            <a class="nav-link js-scroll-trigger" href="#services">Ranking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#portfolio">Entra</a>
+                            <a class="nav-link js-scroll-trigger" href="#portfolio">Entrar</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-primary btn-xl js-scroll-trigger" href="#contact">Registrate</a>
@@ -61,13 +61,15 @@
                         <h1 class="text-uppercase">
                             <strong>Encuentra tus recetas favoritas en este sitio</strong>
                         </h1>
-                        <hr>
+
                     </div>
                     <div class="col-lg-8 mx-auto">
-                        <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+                        <p class="text-faded mb-5 sinclase">¿Quieres saber como funciona la cocina de un restaurant?</p>
+                        <iframe class="cosita" width="500" height="250" src="https://www.youtube.com/embed/6fhAchG-jcw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> </iframe>
                     </div>
                 </div>
+
+                <a class="boton btn btn-primary btn-xl js-scroll-trigger" href="#about">¡Registrate ya!</a>
             </div>
         </header>
 
@@ -95,7 +97,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        <h2 class="section-heading">At Your Service</h2>
+                        <h2 class="section-heading">LA COCINA A TU SERVICIO</h2>
                         <hr class="my-4">
                     </div>
                 </div>
@@ -104,9 +106,9 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="service-box mt-5 mx-auto">
-                            <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
-                            <h3 class="mb-3">Sturdy Templates</h3>
-                            <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
+                            <i class="fas fa-4x fa-book-open text-primary mb-3 sr-icon-1"></i>
+                            <h3 class="mb-3">Wikipedia de las recetas</h3>
+                            <p class="text-muted mb-0">Millones de recetas para tu cocina con 1 solo click.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
@@ -127,7 +129,7 @@
                         <div class="service-box mt-5 mx-auto">
                             <i class="fas fa-4x fa-star text-primary mb-3 sr-icon-4"></i>
                             <h3 class="mb-3">Valoración</h3>
-                            <p class="text-muted mb-0">Encuentra las mejores recetas y los mejores chefs</p>
+                            <p class="text-muted mb-0">Recetas mejores valoradas para que puedas usar</p>
                         </div>
                     </div>
                 </div>
