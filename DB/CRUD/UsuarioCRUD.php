@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../Objects/Usuario.php';
-include_once '../Connection.php';
+include_once 'Objects/Usuario.php';
+include_once 'DB/Connection.php';
 
 class UsuarioCRUD extends Connection {
 
@@ -73,4 +73,3 @@ class UsuarioCRUD extends Connection {
 
 }
 
-?>

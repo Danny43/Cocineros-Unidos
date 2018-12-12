@@ -1,3 +1,9 @@
+<?php
+
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,6 +103,13 @@
                                         <div id="errorNombre" class="col txtError"></div>
                                         <input id="pass" name="pass" type="password" class="form-control separacion" placeholder="Contraseña" aria-describedby="basic-addon1">
                                         <div id="errorPass" class="col txtError"></div>
+                                        <?php
+
+                                        if (isset($_SESSION['estadoSesion'])) {
+                                            echo '<div id="errorSesion" class="col txtErrorSesion"> Usuario y/o Contraseña no coincide con nuestros registros </div>';
+                                            session_destroy();
+                                        }
+                                        ?>
                                         <button id="iniciarSesion" name="action" value="iniciarSesion" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Iniciar Sesion</button>
                                         <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
                                     </form>
@@ -125,20 +138,20 @@
     <script>
 
         $(document).ready(function (e) {
-          
+
 
             $('#iniciarSesion').click(function (e) {
                 return validarUsuario() && validarPassword();
             });
-            
-            $('#nombreUsuario').focusout(function (e){
-               validarUsuario(); 
+
+            $('#nombreUsuario').focusout(function (e) {
+                validarUsuario();
             });
-            
-            $('#pass').focusout(function (e){
-               validarPassword(); 
+
+            $('#pass').focusout(function (e) {
+                validarPassword();
             });
-            
+
 
             function validarUsuario() {
                 var nombreUsuario = $('#nombreUsuario').val();
@@ -149,7 +162,7 @@
                     return false;
                 } else {
                     $('#nombreUsuario').removeClass('error');
-                   // $('#nombreUsuario').addClass('exito');
+                    // $('#nombreUsuario').addClass('exito');
                     $('#errorNombre').html('');
                     return true;
                 }
@@ -159,11 +172,12 @@
                 if (pass.length < 3) {
                     $('#pass').removeClass('exito');
                     $('#pass').addClass('error');
+                    $('#errorSesion').html('');
                     $('#errorPass').html('La contraseña debe tener almenos 4 caracteres');
                     return false;
                 } else {
                     $('#pass').removeClass('error');
-                   // $('#pass').addClass('exito');
+                    // $('#pass').addClass('exito');
                     $('#errorPass').html('');
                     return true;
                 }

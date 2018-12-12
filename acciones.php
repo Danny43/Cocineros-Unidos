@@ -1,9 +1,9 @@
 <?php
 
 include_once 'DB/CRUD/UsuarioCRUD.php';
-include_once 'objects/Usuario.php';
+include_once 'Objects/Usuario.php';
 
-
+session_start();
 //importar usuario.php y el crud para comprobar si el usuario esta registrado en la base de datos
 
 if (isset($_POST['action'])) {
@@ -13,6 +13,8 @@ if (isset($_POST['action'])) {
 switch ($action) {
 
     case 'iniciarSesion':
+        iniciarSesion();
+        break;
 }
 
 function iniciarSesion() {
@@ -35,13 +37,11 @@ function iniciarSesion() {
             $solicitud = true;
         }
     }
-    
-    if($solicitud){
-        echo 'Has iniciado sesion';
-    }else{
-        echo 'Error al iniciar sesion';
-    }
-    
-}
 
-?>
+    if ($solicitud) {
+        echo 'Has iniciado sesion';
+    } else {
+        $_SESSION['estadoSesion'] = 'userNotFound';
+        header('Location: iniciarSesion.php');
+    }
+}
