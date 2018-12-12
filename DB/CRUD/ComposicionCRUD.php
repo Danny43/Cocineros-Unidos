@@ -17,7 +17,7 @@ include_once 'DB/Connection.php';
         $sql = "INSERT INTO composicon (ingrediente_nombre, receta_nombre, cantidad) VALUES (?,?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("s  s  i", $composicion->ingrediente_nombre->nombre, $composicion->receta_nombre->receta, $composicion->cantidad);
+        $stmt->bind_param("ssi", $composicion->ingrediente_nombre->nombre, $composicion->receta_nombre->receta, $composicion->cantidad);
         $ok = $stmt->execute();
 
         $this->desconectar();
@@ -39,8 +39,8 @@ include_once 'DB/Connection.php';
             $ingredienteLista = $ingredienteCRUD->listar();
             
             for($i = 0; $i < count($ingredienteLista); $i++){
-                if($fila['ingrediente_nombre'] == $ingredienteLista[i]->nombre){
-                    $composicion->ingrediente_nombre = $ingredienteLista[i];
+                if($fila['ingrediente_nombre'] == $ingredienteLista[$i]->nombre){
+                    $composicion->ingrediente_nombre = $ingredienteLista[$i];
                 }
                 
             }
@@ -49,8 +49,8 @@ include_once 'DB/Connection.php';
             $recetaLista = $recetaCRUD->listar();
             
             for($i = 0; $i < count($recetaLista); $i++){
-                if($fila['receta_nombre'] == $recetaLista[i]->nombre){
-                    $composicion->receta_nombre = $recetaLista[i];
+                if($fila['receta_nombre'] == $recetaLista[$i]->nombre){
+                    $composicion->receta_nombre = $recetaLista[$i];
                 }
             }
             

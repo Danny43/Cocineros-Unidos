@@ -12,7 +12,7 @@ class UsuarioCRUD extends Connection {
         $sql = "INSERT INTO usuario (nombre, clave, rol) VALUES (?,?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("s  s  s", $usuario->nombre, $usuario->clave, $usuario->rol);
+        $stmt->bind_param("sss", $usuario->nombre, $usuario->clave, $usuario->rol);
         $ok = $stmt->execute();
 
         $this->desconectar();

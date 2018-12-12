@@ -14,7 +14,7 @@ class RecetaCRUD extends Connection {
         $sql = "INSERT INTO receta (nombre, descripcion, creador) VALUES (?,?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("s  s  s", $receta->nombre, $receta->descripcion, $receta->creador->nombre);
+        $stmt->bind_param("sss", $receta->nombre, $receta->descripcion, $receta->creador->nombre);
         $ok = $stmt->execute();
 
         $this->desconectar();
@@ -40,9 +40,9 @@ class RecetaCRUD extends Connection {
 
             for ($i = 0; $i < count($creadorLista); $i++) {
 
-                if ($fila['creador'] == $creadorLista[i]->nombre) {
+                if ($fila['creador'] == $creadorLista[$i]->nombre) {
 
-                    $receta->creador = $creadorLista[i];
+                    $receta->creador = $creadorLista[$i];
                 }
             }
 

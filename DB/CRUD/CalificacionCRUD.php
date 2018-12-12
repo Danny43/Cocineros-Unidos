@@ -16,7 +16,7 @@ class CalificacionCRUD extends Connection {
         $sql = "INSERT INTO calificacion (usuario_nombre, receta_nombre, valor) VALUES (?,?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("s  s  i", $calificacion->usuario_nombre->nombre, $calificacion->receta_nombre->nombre, $calificacion->valor);
+        $stmt->bind_param("ssi", $calificacion->usuario_nombre->nombre, $calificacion->receta_nombre->nombre, $calificacion->valor);
         $ok = $stmt->execute();
 
         $this->desconectar();
@@ -39,8 +39,8 @@ class CalificacionCRUD extends Connection {
 
             for ($i = 0; $i < count($usuarioLista); $i++) {
 
-                if ($fila['usuario_nombre'] == $usuarioLista[i]->nombre) {
-                    $calificacion->usuario_nombre = $usuarioLista[i];
+                if ($fila['usuario_nombre'] == $usuarioLista[$i]->nombre) {
+                    $calificacion->usuario_nombre = $usuarioLista[$i];
                 }
             }
 
@@ -50,8 +50,8 @@ class CalificacionCRUD extends Connection {
 
             for ($i = 0; $i < count($recetaLista); $i++) {
 
-                if ($fila['receta_nombre'] == $recetaLista[i]->nombre) {
-                    $calificacion->receta_nombre = $recetaLista[i];
+                if ($fila['receta_nombre'] == $recetaLista[$i]->nombre) {
+                    $calificacion->receta_nombre = $recetaLista[$i];
                 }
             }
 
