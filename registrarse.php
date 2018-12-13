@@ -1,5 +1,15 @@
 <?php
+require_once 'DB/CRUD/UsuarioCRUD.php';
+
 session_start();
+
+    if(isset($_SESSION['usuario'])){
+        if($_SESSION['usuario']->rol == 'administrador'){
+            header('Location: mainMenuAdmin.php');
+        }else if($_SESSION['usuario']->rol == 'cocinero'){
+            header('Location: mainMenuCocinero.php');
+        }
+    }
 
 ?>
 
@@ -65,7 +75,7 @@ session_start();
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Cocineros Unidos</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo.png">Cocineros Unidos</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -107,7 +117,7 @@ session_start();
                                         <div id="errorPass" class="col txtError"></div>
 
                                         <button id="registrarse" name="action" value="registrarse" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Registrarse</button>
-                                        <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
+                                        <p class="text-muted mb-5 separacion">Ya tienes una cuenta? <a href="iniciarSesion.php" >Inicia Sesion</a></p>
                                     </form>
                                 </div>
                             </div>
