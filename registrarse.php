@@ -1,6 +1,5 @@
 <?php
-
-    session_start();
+session_start();
 
 ?>
 
@@ -14,7 +13,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Iniciar Sesion | Cocineros Unidos</title>
+        <title>Registrarse | Cocineros Unidos</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -96,21 +95,18 @@
                         <div class="card w-50 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Iniciar Sesion</h2>
+                                <h2 class="titulo">Registrarse</h2>
                                 <div class="tarjetaFormulario">
                                     <form action="acciones.php" method="POST" >
-                                        <input id="nombreUsuario" name="nombreUsuario" type="text" class="form-control separacion" placeholder="Nombre de Usuario" aria-label="Username" aria-describedby="basic-addon1">
-                                        <div id="errorNombre" class="col txtError"></div>
+                                        <div class="form-group">
+                                            <label for="nombreUsuario">Nombre de Usuario</label>
+                                            <input onclick="compobarUsuario(this)" type="text" class="form-control" id="nombreUsuario" name="nombreUsuario"  placeholder="Ej: NeiraSama">
+                                            <div id="errorNombre" class="col txtError"></div>
+                                        </div>
                                         <input id="pass" name="pass" type="password" class="form-control separacion" placeholder="Contraseña" aria-describedby="basic-addon1">
                                         <div id="errorPass" class="col txtError"></div>
-                                        <?php
 
-                                        if (isset($_SESSION['estadoSesion'])) {
-                                            echo '<div id="errorSesion" class="col txtErrorSesion"> Usuario y/o Contraseña no coincide con nuestros registros </div>';
-                                            session_destroy();
-                                        }
-                                        ?>
-                                        <button id="iniciarSesion" name="action" value="iniciarSesion" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Iniciar Sesion</button>
+                                        <button id="registrarse" name="action" value="registrarse" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Registrarse</button>
                                         <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
                                     </form>
                                 </div>
@@ -137,10 +133,30 @@
     </body>
     <script>
 
+
+        function comprobarUsuario(usuario) {
+            var url = 'comprobarUsuario.php';
+            var parametros = 'usuario=' + usuario.value;
+            var ajax = new Ajax.Updater('errorNombre', url, {method: 'get', parameters: parametros});
+        }
+
+
         $(document).ready(function (e) {
+            
+                <?php
+                
+                if(isset($_SESSION['registro'])){
+                    if($_SESSION['registro'] == 'error'){
+                        session_destroy();
+                        echo 'alert("Error al registrarte");';
+                    }
+                }
+                
+                ?>
+            
 
 
-            $('#iniciarSesion').click(function (e) {
+            $('#registrarse').click(function (e) {
                 return validarUsuario() && validarPassword();
             });
 

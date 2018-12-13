@@ -1,7 +1,6 @@
 <?php
 
-include_once 'DB/CRUD/UsuarioCRUD.php';
-include_once 'Objects/Usuario.php';
+require_once 'DB/CRUD/UsuarioCRUD.php';
 
 session_start();
 //importar usuario.php y el crud para comprobar si el usuario esta registrado en la base de datos
@@ -15,9 +14,13 @@ switch ($action) {
     case 'iniciarSesion':
         iniciarSesion();
         break;
+    case 'registrarse';
+        registrarse();
+        break;
 }
 
 function iniciarSesion() {
+
     $solicitud = false;
     $nombreUsuario = '';
     $pass = '';
@@ -31,17 +34,53 @@ function iniciarSesion() {
     $usuarioCRUD = new UsuarioCRUD();
     $usuarioLista = $usuarioCRUD->listar();
 
-    for ($i = 0; $i < count($usuarioLista); $i++) {
-        if ($usuarioLista[i]->nombre == $nombreUsuario && $usuarioLista[i]->clave == $pass) {
-            $_SESSION['usuario'] = $usuarioLista[i];
+    foreach ($usuarioLista as $usuario) {
+        if ($usuario->nombre == $nombreUsuario && $usuario->clave == $pass) {
+            $_SESSION['usuario'] = $usuario;
             $solicitud = true;
         }
     }
 
+
     if ($solicitud) {
-        echo 'Has iniciado sesion';
+        if ($_SESSION['usuario']->rol == 'administrador') {
+            header('Location: mainMenuAdmin.php');
+        } else {
+            header('Location: mainMenuCocinero.php');
+        }
     } else {
         $_SESSION['estadoSesion'] = 'userNotFound';
         header('Location: iniciarSesion.php');
+    }
+}
+
+function registrarse() {
+
+    $solicitud = false;
+    $nombreUsuario = '';
+    $pass = '';
+    if (isset($_POST['nombreUsuario'])) {
+        $nombreUsuario = $_POST['nombreUsuario'];
+    }
+    if (isset($_POST['pass'])) {
+        $pass = $_POST['pass'];
+    }
+
+    $usuarioCRUD = new UsuarioCRUD();
+
+    $usuario = new Usuario();
+    $usuario->nombre = $nombreUsuario;
+    $usuario->clave = $pass;
+    $usuario->rol = 'cocinero';
+
+    $solicitud = $usuarioCRUD->crear($usuario);
+
+    if ($solicitud) {
+        $_SESSION['usuario'] = $usuario;
+        $_SESSION['registro'] = 'exito';
+        header('Location: mainMenuCocinero.php');
+    } else {
+        $_SESSION['registro'] = 'error';
+        header('Location: registrarse.php');
     }
 }
