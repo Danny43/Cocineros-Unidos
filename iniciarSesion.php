@@ -1,6 +1,16 @@
 <?php
 
-    session_start();
+require_once 'DB/CRUD/UsuarioCRUD.php';
+
+session_start();
+
+    if(isset($_SESSION['usuario'])){
+        if($_SESSION['usuario']->rol == 'administrador'){
+            header('Location: mainMenuAdmin.php');
+        }else if($_SESSION['usuario']->rol == 'cocinero'){
+            header('Location: mainMenuCocinero.php');
+        }
+    }
 
 ?>
 
@@ -111,7 +121,7 @@
                                         }
                                         ?>
                                         <button id="iniciarSesion" name="action" value="iniciarSesion" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Iniciar Sesion</button>
-                                        <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
+                                        <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="registrarse.php" >Registrate</a></p>
                                     </form>
                                 </div>
                             </div>

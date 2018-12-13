@@ -1,5 +1,15 @@
 <?php
+require_once 'DB/CRUD/UsuarioCRUD.php';
+
 session_start();
+
+    if(isset($_SESSION['usuario'])){
+        if($_SESSION['usuario']->rol == 'administrador'){
+            header('Location: mainMenuAdmin.php');
+        }else if($_SESSION['usuario']->rol == 'cocinero'){
+            header('Location: mainMenuCocinero.php');
+        }
+    }
 
 ?>
 
@@ -107,7 +117,7 @@ session_start();
                                         <div id="errorPass" class="col txtError"></div>
 
                                         <button id="registrarse" name="action" value="registrarse" type="submit" class="btn btn-primary btn-xl js-scroll-trigger separacion">Registrarse</button>
-                                        <p class="text-muted mb-5 separacion">Aún no te haz registrado? <a href="" >Registrate</a></p>
+                                        <p class="text-muted mb-5 separacion">Ya tienes una cuenta? <a href="iniciarSesion.php" >Inicia Sesion</a></p>
                                     </form>
                                 </div>
                             </div>

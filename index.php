@@ -44,10 +44,10 @@
                             <a class="nav-link js-scroll-trigger" href="#services">Ranking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#portfolio">Entrar</a>
+                            <a class="nav-link js-scroll-trigger" href="iniciarSesion.php">Entrar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#contact">Registrate</a>
+                            <a class="btn btn-primary btn-xl js-scroll-trigger" href="registrarse.php">Registrate</a>
                         </li>
                     </ul>
                 </div>
