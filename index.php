@@ -113,16 +113,16 @@
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="service-box mt-5 mx-auto">
-                            <i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>
-                            <h3 class="mb-3">Ready to Ship</h3>
-                            <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+                            <i class="fas fa-4x fa-users text-primary mb-3 sr-icon-2"></i>
+                            <h3 class="mb-3">Cocina Internacional</h3>
+                            <p class="text-muted mb-0">Chef de todos los lugares del mundo.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="service-box mt-5 mx-auto">
-                            <i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>
-                            <h3 class="mb-3">Up to Date</h3>
-                            <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                            <i class="fas fa-4x fa-plus text-primary mb-3 sr-icon-3"></i>
+                            <h3 class="mb-3">Sube tus recetas</h3>
+                            <p class="text-muted mb-0">Añade tus propias recetas y se el mejor chef.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
@@ -136,49 +136,49 @@
             </div>
         </section>
 
-        <section class="p-0" id="portfolio">
+         <section class="p-0" id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/1.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/1.jpg" alt="">
+                        <a class="portfolio-box" href="img/2.jpg">
+                            <img class="img-fluid" src="img/2.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a cocinar:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Paila Marina
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/2.jpg" alt="">
+                        <a class="portfolio-box" href="img/3.jpg">
+                            <img class="img-fluid" src="img/3.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a cocinar:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Salmón pochado con reducción cítrica
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/3.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/3.jpg" alt="">
+                        <a class="portfolio-box" href="img/4.jpg">
+                            <img class="img-fluid" src="img/4.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a cocinar:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Tilapia con salsa merlot y merquen
                                     </div>
                                 </div>
                             </div>
