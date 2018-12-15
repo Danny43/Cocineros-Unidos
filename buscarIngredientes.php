@@ -1,3 +1,4 @@
+
 <?php
 require_once 'DB/CRUD/UsuarioCRUD.php';
 require_once 'DB/CRUD/IngredienteCRUD.php';
@@ -19,7 +20,7 @@ if (!isset($_SESSION['usuario'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Nueva Receta | Cocineros Unidos</title>
+        <title>Buscar Ingrediente | Cocineros Unidos</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -104,33 +105,55 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card w-100 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Nueva Receta</h2>
-                                <div class="tarjetaFormulario">
+                                <h2 class="titulo">Buscar Ingrediente</h2>
+                                <!--<div class="tarjetaFormulario">
                                     <form action="acciones.php" method="POST">
                                         <div class="form-group">
-                                            <label for="nombreReceta">Nombre de la receta</label>
-                                            <input type="text" class="form-control" id="nombreReceta" placeholder="Ej: Hamburguejas al vapor">
+                                            <label for="nombreIngrediente">Nombre del Ingrediente</label>
+                                            <input type="text" class="form-control" id="nombreIngrediente" placeholder="Ej: Arroz Integral">
                                         </div>
                                         <div class="form-group">
-                                            <div id="agregar" class="btn btn-light">Agregar</div>
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Ingrediente</th>
-                                                        <th>Cantidad</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="cuerpo-tabla">
-                                                </tbody>
-                                            </table>
-                                        </div>                                      
-                                        <div class="form-group">
-                                            <label for="preparacion">Preparacion</label>
-                                            <textarea class="form-control" name="preparacion" id="preparacion" rows="3"></textarea>
+                                            <label for="unidadMedida">Unidad de medida del Ingrediente</label>
+                                            <input type="text" class="form-control" id="unidadMedida" placeholder="Ej: lt, gr, ud">
                                         </div>
-                                        <button class="btn btn-primary" type="submit" name="action" value="guardarReceta">Guardar</button>
+                                        <button class="btn btn-primary" type="submit" name="action" value="guardarIngrediente">Guardar</button>
                                     </form>
+                                </div> -->
+                                
+                                <?php
+                                
+                                    if(isset($_SESSION['ingredienteBuscado'])){
+                                        if($_SESSION['ingredienteBuscado'] != 'none' & $_SESSION['ingredienteEncontrado'] == 'true'){
+                                            
+                                            echo '<div class="tarjetaFormulario">
+                                    <form action="acciones.php" method="POST">
+                                        <div class="form-group">
+                                            <label for="nombreIngrediente">Nombre del Ingrediente</label>
+                                            <input type="text" class="form-control" value="'.$_SESSION['nombreIngrediente'].'" id="nombreIngrediente">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="unidadMedida">Unidad de medida del Ingrediente</label>
+                                            <input type="text" class="form-control" value"'.$_SESSION['medidaIngrediente'].'" id="unidadMedida">
+                                        </div>
+                                        <button class="btn btn-primary" type="submit" name="action" value="guardarIngrediente">Guardar</button>
+                                    </form>
+                                </div> ';
+                                            
+                                        }
+                                    }else{
+                                        echo '<div class="tarjetaFormulario">
+                                    <div class="form-group">
+                                        <form action"acciones.php" method"POST">
+                                            <label for="nombreIngredienteBuscado">Nombre del Ingrediente</label>
+                                            <input type="text" class="form-control" id="nombreIngredienteBuscado" name="nombreIngredienteBuscado">
+                                            <buttom name="action" value="buscarIngrediente" class="btn btn-primary separacion">Buscar</div>
+                                        </form>    
+                                    </div>';
+                                    }
+                                ?>
+                                
+                                
+                                    
                                 </div>
                             </div>
                         </div>
@@ -165,7 +188,7 @@ if (!isset($_SESSION['usuario'])) {
         $(document).ready(function (e) {
 
 
-            $('#agregar').click(function (e) {
+            $('#buscar').click(function (e) {
                 var interes = $('#interes').val();
                 var gusto = $('#gusto').val();
                 var opciones = "<?php 
