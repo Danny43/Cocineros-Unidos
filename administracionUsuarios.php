@@ -112,17 +112,16 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card w-100 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Administracion</h2>                                                                  
+                                <h2 class="titulo">Administracion Usuarios</h2>                                                                  
                                 <div class="contenedorBotones">
                                     <div class="btn-group-lg">
-                                        <a href="administracionUsuarios.php" class="btn btn-primary">Usuarios</a>
-                                        <a href="administracionRecetas.php" class="btn btn-primary">Recetas</a>
-                                        <a href="administracionIngredientes.php" class="btn btn-primary">Ingredientes</a>
+                                        <a href="nuevoUsuario.php" class="btn btn-primary">Nuevo Usuario</a>
+                                        <a href="buscarUsuarios.php" class="btn btn-primary">Buscar</a>
+                                        <a href="verTodosUsuarios.php" class="btn btn-primary">Ver Todos</a>
                                     </div>
                                 </div>                                 
                             </div>
-                            <a href="mainMenuAdmin.php" class="btn btn-primary">Volver</a>
-
+                            <a href="administracion.php" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>
