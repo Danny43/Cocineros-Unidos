@@ -121,6 +121,7 @@ if (!isset($_SESSION['usuario'])) {
                                     </div>
                                 </div>                                 
                             </div>
+                            <a href="administracion.php" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>

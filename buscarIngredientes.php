@@ -119,109 +119,114 @@ if (!isset($_SESSION['usuario'])) {
                                         <button class="btn btn-primary" type="submit" name="action" value="guardarIngrediente">Guardar</button>
                                     </form>
                                 </div> -->
-                                
+
                                 <?php
-                                
-                                    if(isset($_SESSION['ingredienteBuscado'])){
-                                        if($_SESSION['ingredienteBuscado'] != 'none' & $_SESSION['ingredienteEncontrado'] == 'true'){
-                                            
-                                            echo '<div class="tarjetaFormulario">
-                                    <form action="acciones.php" method="POST">
+                                if (isset($_SESSION['ingredienteBuscado']) && $_SESSION['ingredienteBuscado'] != 'none') {
+                                    if ($_SESSION['ingredienteBuscado'] != 'none' & $_SESSION['ingredienteEncontrado'] == 'true') {
+
+                                        echo '<div class="tarjetaFormulario">
+                                    <form id="frmGuardar" action="acciones.php" method="POST">
                                         <div class="form-group">
                                             <label for="nombreIngrediente">Nombre del Ingrediente</label>
-                                            <input type="text" class="form-control" value="'.$_SESSION['nombreIngrediente'].'" id="nombreIngrediente">
+                                            <input type="text" class="form-control" name="nombreIngrediente" disabled value="' . $_SESSION['nombreIngrediente'] . '" id="nombreIngrediente">
                                         </div>
                                         <div class="form-group">
                                             <label for="unidadMedida">Unidad de medida del Ingrediente</label>
-                                            <input type="text" class="form-control" value"'.$_SESSION['medidaIngrediente'].'" id="unidadMedida">
+                                            <input type="text" class="form-control" disabled  name="unidadMedida" value="' . $_SESSION['medidaIngrediente'] . '" id="unidadMedida">
                                         </div>
-                                        <button class="btn btn-primary" type="submit" name="action" value="guardarIngrediente">Guardar</button>
+                                        <div id="editar" class="btn btn-light">Editar</div>
+                                        <div id="guardar">
+                                        </div>
+                                        <button type="submit" name="action" value="volverbuscarIngrediente" class="btn btn-primary separacion">Volver</button>
+                                        <button type="submit" name="action" value="eliminarIngrediente" class="btn btn-primary separacion">Eliminar</button>
                                     </form>
                                 </div> ';
-                                            
-                                        }
-                                    }else{
+                                    } else {
                                         echo '<div class="tarjetaFormulario">
                                     <div class="form-group">
-                                        <form action"acciones.php" method"POST">
+                                        <form action="acciones.php" method="POST">
                                             <label for="nombreIngredienteBuscado">Nombre del Ingrediente</label>
                                             <input type="text" class="form-control" id="nombreIngredienteBuscado" name="nombreIngredienteBuscado">
-                                            <buttom name="action" value="buscarIngrediente" class="btn btn-primary separacion">Buscar</div>
+                                            <div id="errorIngrediente" class="col txtErrorSesion"> Ningun Ingrediente coincide con nuestros registros</div>
+                                            <button type="submit" name="action" value="buscarIngrediente" class="btn btn-primary separacion">Buscar</button>
+                                            <a href="administracionIngredientes.php" class="btn btn-primary">Volver</a>
                                         </form>    
                                     </div>';
+                                        $_SESSION['ingredienteBuscado'] = 'none';
+                                        $_SESSION['ingredienteEncontrado'] = 'false';
                                     }
+                                } else {
+                                    echo '<div class="tarjetaFormulario">
+                                    <div class="form-group">
+                                        <form action="acciones.php" method="POST">
+                                            <label for="nombreIngredienteBuscado">Nombre del Ingrediente</label>
+                                            <input type="text" class="form-control" id="nombreIngredienteBuscado" name="nombreIngredienteBuscado">
+                                            <button type="submit" name="action" value="buscarIngrediente" class="btn btn-primary separacion">Buscar</button>
+                                            <a href="administracionIngredientes.php" class="btn btn-primary">Volver</a>
+
+                                        </form>    
+                                    </div>';
+                                }
                                 ?>
-                                
-                                
-                                    
-                                </div>
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
+
+        
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Plugin JavaScript -->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-        <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-        <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
 
-        <!-- Custom scripts for this template -->
-        <script src="js/creative.min.js"></script>
+</body>
+<script>
 
-    </body>
-    <script>
-        var i = 0;
-        var iden = 0;
+    var nombreOriginal = "";
+    var unidadOriginal = "";
 
-        function clickaction(b) {
-            iden = b;
-        }
+    $(document).ready(function (e) {
 
-
-        $(document).ready(function (e) {
-
-
-            $('#buscar').click(function (e) {
-                var interes = $('#interes').val();
-                var gusto = $('#gusto').val();
-                var opciones = "<?php 
-            
-                $ingredienteCRUD = new IngredienteCRUD();
-                $ingredienteLista = $ingredienteCRUD->listar();
-                
-                foreach ($ingredienteLista as $ingrediente) {
-                    echo "<option value='".$ingrediente->nombre."'>".$ingrediente->nombre." (".$ingrediente->unidad_medida.")"."</option>";
-                }
-            
-            
-            ?>";
-
-                var filaNueva = "<tr>" +
-                        "<td><select onclick=clickaction(this.id) name='ingrediente' id='" + i + "'>" + opciones +
-                        "</select></td>" +
-                        "<td><input onclick=clickaction(this.id) name class='gusto' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
-                        "<td><div class='btn-eliminar btn btn-danger'>Eliminar</div></td>" +
-                        "</tr>";
-                i = i + 2;
-                $('#cuerpo-tabla').append(filaNueva);
-                $('#interes').val("");
-                $('#gusto').val("");
-            });
-            
-            $(document).on('click', '.btn-eliminar', function (e) {
-            $(this).parent().parent().remove();
-            });
-
+        $('#editar').click(function (e) {
+            nombreOriginal = $('#nombreIngrediente').val();
+            unidadOriginal = $('#unidadMedida').val();
+            $('#nombreIngrediente').prop("disabled", false);
+            $('#unidadMedida').prop("disabled", false);
+            $('#guardar').html('<div id="cancelar" class="btn btn-danger">Cancelar</div>');
+            $('#frmGuardar').append('<button class="btn btn-primary" type="submit" name="action" value="guardarIngredienteEditado">Guardar</button>');
         });
 
 
-    </script>
+        $(document).on('click', '#cancelar', function (e) {
+            $('#nombreIngrediente').val(nombreOriginal);
+            $('#unidadMedida').val(unidadOriginal);
+            $('#nombreIngrediente').prop("disabled", true);
+            $('#unidadMedida').prop("disabled", true);
+            $('#guardar').html('');
+            $('#guardar').html('');
+        });
+        
+
+    });
+    
+    
+
+
+</script>
 
 </html>

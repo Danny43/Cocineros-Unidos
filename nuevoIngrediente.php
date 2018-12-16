@@ -110,16 +110,17 @@ if (!isset($_SESSION['usuario'])) {
                                     <form action="acciones.php" method="POST">
                                         <div class="form-group">
                                             <label for="nombreIngrediente">Nombre del Ingrediente</label>
-                                            <input type="text" class="form-control" id="nombreIngrediente" placeholder="Ej: Arroz Integral">
+                                            <input type="text" class="form-control" id="nombreIngrediente" name="nombreIngrediente" placeholder="Ej: Arroz Integral">
                                         </div>
                                         <div class="form-group">
                                             <label for="unidadMedida">Unidad de medida del Ingrediente</label>
-                                            <input type="text" class="form-control" id="unidadMedida" placeholder="Ej: lt, gr, ud">
+                                            <input type="text" class="form-control" id="unidadMedida" name="unidadMedida" placeholder="Ej: lt, gr, ud">
                                         </div>
                                         <button class="btn btn-primary" type="submit" name="action" value="guardarIngrediente">Guardar</button>
                                     </form>
                                 </div>
                             </div>
+                            <a href="administracionIngredientes.php" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>

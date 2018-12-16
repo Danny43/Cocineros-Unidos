@@ -12,7 +12,7 @@ include_once 'DB/Connection.php';
         $sql = "INSERT INTO ingrediente (nombre, unidad_medida) VALUES (?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("sss", $ingrediente->nombre, $ingrediente->unidad_medida);
+        $stmt->bind_param("ss", $ingrediente->nombre, $ingrediente->unidad_medida);
         $ok = $stmt->execute();
 
         $this->desconectar();
