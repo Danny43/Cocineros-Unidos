@@ -4,7 +4,7 @@ require_once 'DB/CRUD/UsuarioCRUD.php';
 require_once 'DB/CRUD/IngredienteCRUD.php';
 
 session_start();
-//importar usuario.php y el crud para comprobar si el usuario esta registrado en la base de datos
+
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
@@ -32,6 +32,21 @@ switch ($action) {
         break;
     case'guardarIngredienteEditado':
         guardarIngredienteEditado();
+        break;
+    case'guardarNuevoUsuario':
+        guardarNuevoUsuario();
+        break;
+    case'buscarUsuario':
+        buscarUsuario();
+        break;
+    case'volverbuscarUsuario':
+        volverbuscarUsuario();
+        break;
+    case'eliminarUsuario':
+        eliminarUsuario();
+        break;
+    case'guardarUsuarioEditado':
+        guardarUsuarioEditado();
         break;
 }
 
@@ -132,6 +147,81 @@ function volverbuscarIngrediente() {
     header('Location: buscarIngredientes.php');
 }
 
+function buscarUsuario(){
+    
+    $usuario = '';
+    if (isset($_POST['nombreUsuarioBuscado'])) {
+        $usuarioBuscado = $_POST['nombreUsuarioBuscado'];
+        $usuarioCRUD = new UsuarioCRUD();
+        $usuarioLista = $usuarioCRUD->listar();
+
+        $_SESSION['usuarioEncontrado'] = 'false';
+        $_SESSION['usuarioBuscado'] = 'yes';
+
+        foreach ($usuarioLista as $usuario) {
+            if ($usuarioBuscado == $usuario->nombre) {
+
+                $_SESSION['nombreUsuario'] = $usuario->nombre;
+                $_SESSION['rolUsuario'] = $usuario->rol;
+                $_SESSION['usuarioBuscado'] = 'yes';
+                $_SESSION['usuarioEncontrado'] = 'true';
+                header('Location: buscarUsuarios.php');
+            }
+        }
+
+        header('Location: buscarUsuarios.php');
+    }
+    
+}
+
+function volverbuscarUsuario(){
+    
+    $_SESSION['usuarioBuscado'] = 'none';
+    $_SESSION['usuarioEncontrado'] = 'false';
+    header('Location: buscarUsuarios.php');
+    
+}
+
+function eliminarUsuario(){
+    
+    $usuario = new Usuario();
+    $usuario->nombre = $_SESSION['nombreUsuario'];
+    $usuario->rol = $_SESSION['rolUsuario'];
+    $usuarioCRUD = new UsuarioCRUD();
+    if($usuarioCRUD->eliminar($usuario)){
+        volverbuscarUsuario();
+    }else{
+        echo 'error al realizar la operacion';
+    }
+    
+    
+}
+
+function guardarUsuarioEditado(){
+    
+    $nuevoNombre = '';
+    $nuevoRol = '';
+    
+    if(isset($_POST['nombreUsuario'])){
+        $nuevoNombre = $_POST['nombreUsuario'];
+    }
+    if(isset($_POST['rolUsuario'])){
+        $nuevoRol = $_POST['rolUsuario'];       
+    }
+    
+    $usuarioCRUD = new UsuarioCRUD();
+    $usuario = new Usuario();
+    $usuario->nombre = $_SESSION['nombreUsuario'];
+    $usuario->rol = $nuevoRol;
+    
+    if($usuarioCRUD->editar($usuario)){
+        volverbuscarUsuario();
+    }else{
+        echo 'error al realizar la operacion';
+    }
+    
+}
+
 function eliminarIngrediente(){
     $ingrediente = new Ingrediente();
     $ingrediente->nombre = $_SESSION['nombreIngrediente'];
@@ -188,6 +278,37 @@ function guardarIngredienteEditado(){
     
     if($ingredienteCRUD->editar($ingrediente)){
         volverbuscarIngrediente();
+    }else{
+        echo 'error al realizar la operacion';
+    }
+    
+}
+
+function guardarNuevoUsuario(){
+    
+    $nuevoUsuario = '';
+    $nuevaPass = '';
+    $nuevoRol = '';
+    
+    if(isset($_POST['nombreUsuario'])){
+        $nuevoUsuario = $_POST['nombreUsuario'];
+    }
+    if(isset($_POST['passUsuario'])){       
+        $nuevaPass = $_POST['passUsuario'];
+    }
+    if(isset($_POST['rolUsuario'])){
+        $nuevoRol = $_POST['rolUsuario'];
+    }
+    
+    $usuarioCRUD = new UsuarioCRUD();
+    $usuario = new Usuario();
+    
+    $usuario->nombre = $nuevoUsuario;
+    $usuario->clave = $nuevaPass;
+    $usuario->rol = $nuevoRol;
+    
+    if($usuarioCRUD->crear($usuario)){
+        header('Location: administracionUsuarios.php');       
     }else{
         echo 'error al realizar la operacion';
     }
