@@ -119,9 +119,9 @@ if (!isset($_SESSION['usuario'])) {
                                         <a href="buscarUsuarios.php" class="btn btn-primary">Buscar</a>
                                         <a href="verTodosUsuarios.php" class="btn btn-primary">Ver Todos</a>
                                     </div>
-                                </div>                                 
+                                </div>
+                                <a href="administracion.php" class="btn btn-primary">Volver</a>
                             </div>
-                            <a href="administracion.php" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>
