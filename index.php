@@ -136,7 +136,7 @@
             </div>
         </section>
 
-         <section class="p-0" id="portfolio">
+        <section class="p-0" id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
                     <div class="col-lg-4 col-sm-6">
