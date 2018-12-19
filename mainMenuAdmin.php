@@ -86,17 +86,17 @@ if (isset($_SESSION['usuario'])) {
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        Foto del chef
+                        Foto de Receta
                     </div>
                     <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="section-heading text-white">¡Receta del Día!</h2>
+                        <h2 class="section-heading text-white">¡Sugerencias para ti!</h2>
                         <img src="img/stars.png"/>
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Lista de Ingredientes:</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Preparación</a>
+                        
                     </div>
                     <div class="col">
-                        FOTO de la receta
+                        <p class="text-faded mb-4">Preparación</p>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@ if (isset($_SESSION['usuario'])) {
             </div>
         </section>
 
-        <section class="p-0" id="portfolio">
+         <section class="p-0" id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
                     <div class="col-lg-4 col-sm-6">
@@ -244,7 +244,7 @@ if (isset($_SESSION['usuario'])) {
 
         <section class="bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4"> Repositorio Github </h2>
+                <h2 class="mb-4"> Repositorio Github</h2>
                 <a class="btn btn-light btn-xl sr-button" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
             </div>
         </section>
