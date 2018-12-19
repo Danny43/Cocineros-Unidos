@@ -84,7 +84,25 @@ if (!isset($_SESSION['usuario'])) {
                             <a class="nav-link js-scroll-trigger" href="nuevaReceta.php">Nueva Receta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#services">Ranking</a>
+                            <?php
+                            if ($_SESSION['usuario']->rol == 'administrador') {
+                                echo '<a class="nav-link js-scroll-trigger" href="#services">Services</a>';
+                            }else{
+                                echo '<a class="nav-link js-scroll-trigger" href="listaRecetasPuntuadas.php">Top Recetas</a>';
+                            }
+                            ?>
+                            
+                        </li>
+                        <li class="nav-item">
+                            <?php
+                            if ($_SESSION['usuario']->rol == 'administrador') {
+                                echo '<a class="nav-link js-scroll-trigger" href="administracion.php">Administracion</a>';
+                            }else{
+                                echo '<a class="nav-link js-scroll-trigger" href="">Portfolio</a>';
+                            }
+                            ?>
+                            
+                            
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="cerrarSesion.php">Cerrar Sesion</a>
@@ -106,7 +124,7 @@ if (!isset($_SESSION['usuario'])) {
                                     <form action="acciones.php" method="POST">
                                         <div class="form-group">
                                             <label for="nombreReceta">Nombre de la receta</label>
-                                            <input type="text" class="form-control" id="nombreReceta" placeholder="Ej: Hamburguejas al vapor">
+                                            <input type="text" class="form-control" name="nombreReceta" id="nombreReceta" placeholder="Ej: Hamburguejas al vapor">
                                         </div>
                                         <div class="form-group">
                                             <div id="agregar" class="btn btn-light">Agregar</div>
@@ -152,10 +170,21 @@ if (!isset($_SESSION['usuario'])) {
     </body>
     <script>
         var i = 0;
-        var iden = 0;
+        
 
         function clickaction(b) {
-            iden = b;
+            var iden = b-1;
+            valorSelect = $('#'+(b-2)).val();
+            
+            //alert('indenInput= ' +iden+ '  selectValor= ' + valorSelect + ' valoridBoton= '+b );
+            $('#'+b).html('');
+            $('#'+b).removeClass('btn');
+            $('#'+b).removeClass('btn-success');
+            document.getElementById(iden).setAttribute("name", valorSelect);
+            //$('#'+(b-2)).prop("disabled", true);
+            //$('#'+iden).prop("disabled", true);
+            //$('#'+iden).
+            
         }
 
 
@@ -178,20 +207,23 @@ if (!isset($_SESSION['usuario'])) {
             ?>";
 
                 var filaNueva = "<tr>" +
-                        "<td><select onclick=clickaction(this.id) name='ingrediente' id='" + i + "'>" + opciones +
+                        "<td><select name='ingrediente' id='" + i + "'>" + opciones +
                         "</select></td>" +
-                        "<td><input onclick=clickaction(this.id) name class='gusto' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
+                        "<td><input name='' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
+                        "<td><div class='btn-confirmar btn btn-success' id='"+(i+2)+"' onclick=clickaction(this.id) >Confirmar</div></td>" +
                         "<td><div class='btn-eliminar btn btn-danger'>Eliminar</div></td>" +
                         "</tr>";
-                i = i + 2;
+                i = i + 3;
                 $('#cuerpo-tabla').append(filaNueva);
-                $('#interes').val("");
-                $('#gusto').val("");
+                //$('#interes').val("");
+                //$('#gusto').val("");
             });
             
             $(document).on('click', '.btn-eliminar', function (e) {
             $(this).parent().parent().remove();
             });
+            
+
 
         });
 
