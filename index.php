@@ -140,8 +140,8 @@
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/2.jpg">
-                            <img class="img-fluid" src="img/2.jpg" alt="">
+                        <a class="portfolio-box" href="img/portfolio/fullsize/2.jpg">
+                            <img class="img-fluid" src="img/portfolio/fullsize/2.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">

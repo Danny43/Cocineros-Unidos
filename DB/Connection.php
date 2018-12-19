@@ -4,7 +4,7 @@ class Connection{
     public $miConexion;
     
     function conectar(){
-        $this->miConexion = new mysqli("localhost", "root", "pone tu contraseña", "bdcocina");
+        $this->miConexion = new mysqli("localhost", "root", "", "bdcocina");
         if ($this->miConexion->connect_errno) {
             echo "Fallo al conectar a MySQL: (" . $this->miConexion->connect_errno . ") ";
         }
