@@ -1,18 +1,15 @@
-
 <?php
 require_once 'DB/CRUD/UsuarioCRUD.php';
 require_once 'DB/CRUD/IngredienteCRUD.php';
+require_once 'DB/CRUD/ComposicionCRUD.php';
 
 session_start();
 
-if (isset($_SESSION['usuario'])) {
-    if ($_SESSION['usuario']->rol != 'administrador') {
-        header('Location: mainMenuCocinero.php');
-    }
-}else{
-    header('Location: iniciarSesion.php');
+if (!isset($_SESSION['usuario'])) {
+    header('Location: inicioSesion.php');
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,7 +20,7 @@ if (isset($_SESSION['usuario'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Administracion | Cocineros Unidos</title>
+        <title>Todas Recetas | Cocineros Unidos</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -67,10 +64,6 @@ if (isset($_SESSION['usuario'])) {
             .text-white {
                 color: gray!important;
             }
-            .contenedorBotones{
-                margin: 10% auto;
-                
-            }
 
         </style>
 
@@ -100,9 +93,6 @@ if (isset($_SESSION['usuario'])) {
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="cerrarSesion.php">Cerrar Sesion</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#miPerfil.php"><?php echo $_SESSION['usuario']->nombre; ?></a>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -115,17 +105,49 @@ if (isset($_SESSION['usuario'])) {
                         <div class="card w-100 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Administracion</h2>                                                                  
-                                <div class="contenedorBotones">
-                                    <div class="btn-group-lg">
-                                        <a href="administracionUsuarios.php" class="btn btn-primary">Usuarios</a>
-                                        <a href="administracionRecetas.php" class="btn btn-primary">Recetas</a>
-                                        <a href="administracionIngredientes.php" class="btn btn-primary">Ingredientes</a>
-                                    </div>
-                                </div>                                 
-                            </div>
-                            <a href="mainMenuAdmin.php" class="btn btn-primary">Volver</a>
+                                <h2 class="titulo">Todas Recetas</h2>
+                                <div class="tarjetaFormulario">
+                                    <form action="acciones.php" method="POST">
+                                        <table class="table table-warning" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Ingredientes</th>
+                                                    <th scope="col">Creador</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $recetaCRUD = new RecetaCRUD();
+                                                $recetaLista = $recetaCRUD->listar();
 
+                                                foreach ($recetaLista as $receta) {
+                                                    
+                                                    $ingredientes = '';
+                                                    
+                                                    $composicionCRUD = new ComposicionCRUD();
+                                                    $composicionLista = $composicionCRUD->listar();
+                                                    
+                                                    foreach ($composicionLista as $composicion) {
+                                                        if($composicion->receta_nombre->nombre == $receta->nombre){
+                                                            $ingredientes = $ingredientes.$composicion->ingrediente_nombre->nombre.' ';
+                                                        }
+                                                    }
+                                                    
+                                                    echo '<tr class="table table-light">
+                                                                <td><a href="verReceta.php?id='.$receta->nombre.'">' . $receta->nombre . '</a></td>
+                                                                <td>' . $ingredientes . '</td>
+                                                                <td><a href="verCocinero.php?id='.$receta->creador->nombre.'">' . $receta->creador->nombre . '</a></td>
+                                                              </tr>';
+                                                }
+                                                ?>
+
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                            <a href="administracionRecetas.php" class="btn btn-primary">Volver</a>
                         </div>
                     </div>
                 </div>
@@ -161,17 +183,14 @@ if (isset($_SESSION['usuario'])) {
             $('#agregar').click(function (e) {
                 var interes = $('#interes').val();
                 var gusto = $('#gusto').val();
-                var opciones = "<?php 
-            
-                $ingredienteCRUD = new IngredienteCRUD();
-                $ingredienteLista = $ingredienteCRUD->listar();
-                
-                foreach ($ingredienteLista as $ingrediente) {
-                    echo "<option value='".$ingrediente->nombre."'>".$ingrediente->nombre." (".$ingrediente->unidad_medida.")"."</option>";
-                }
-            
-            
-            ?>";
+                var opciones = "<?php
+                                                $ingredienteCRUD = new IngredienteCRUD();
+                                                $ingredienteLista = $ingredienteCRUD->listar();
+
+                                                foreach ($ingredienteLista as $ingrediente) {
+                                                    echo "<option value='" . $ingrediente->nombre . "'>" . $ingrediente->nombre . " (" . $ingrediente->unidad_medida . ")" . "</option>";
+                                                }
+                                                ?>";
 
                 var filaNueva = "<tr>" +
                         "<td><select onclick=clickaction(this.id) name='ingrediente' id='" + i + "'>" + opciones +
@@ -184,9 +203,9 @@ if (isset($_SESSION['usuario'])) {
                 $('#interes').val("");
                 $('#gusto').val("");
             });
-            
+
             $(document).on('click', '.btn-eliminar', function (e) {
-            $(this).parent().parent().remove();
+                $(this).parent().parent().remove();
             });
 
         });

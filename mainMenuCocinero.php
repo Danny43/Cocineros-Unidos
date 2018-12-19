@@ -56,7 +56,7 @@ if (isset($_SESSION['usuario'])) {
               <a class="nav-link js-scroll-trigger" href="nuevaReceta.php">Nueva Receta</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link js-scroll-trigger" href="listaRecetasPuntuadas.php">Top Recetas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>

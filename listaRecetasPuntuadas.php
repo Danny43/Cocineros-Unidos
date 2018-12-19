@@ -1,6 +1,8 @@
 <?php
 require_once 'DB/CRUD/UsuarioCRUD.php';
 require_once 'DB/CRUD/IngredienteCRUD.php';
+require_once 'DB/CRUD/ComposicionCRUD.php';
+require_once 'DB/CRUD/CalificacionCRUD.php';
 
 session_start();
 
@@ -19,7 +21,7 @@ if (!isset($_SESSION['usuario'])) {
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Nueva Receta | Cocineros Unidos</title>
+        <title>Top Recetas | Cocineros Unidos</title>
 
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -119,35 +121,70 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card w-100 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Nueva Receta</h2>
+                                <h2 class="titulo">Todas Recetas</h2>
                                 <div class="tarjetaFormulario">
                                     <form action="acciones.php" method="POST">
-                                        <div class="form-group">
-                                            <label for="nombreReceta">Nombre de la receta</label>
-                                            <input type="text" class="form-control" name="nombreReceta" id="nombreReceta" placeholder="Ej: Hamburguejas al vapor">
-                                        </div>
-                                        <div class="form-group">
-                                            <div id="agregar" class="btn btn-light">Agregar</div>
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Ingrediente</th>
-                                                        <th>Cantidad</th>
+                                        <table class="table table-warning" >
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Ingredientes</th>
+                                                    <th scope="col">Creador</th>
+                                                    <th scope="col">Puntuacion General</th>
+                                                    <th scope="col">Mi Puntuacion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $recetaCRUD = new RecetaCRUD();
+                                                $recetaLista = $recetaCRUD->listar();
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="cuerpo-tabla">
-                                                </tbody>
-                                            </table>
-                                        </div>                                      
-                                        <div class="form-group">
-                                            <label for="preparacion">Preparacion</label>
-                                            <textarea class="form-control" name="preparacion" id="preparacion" rows="3"></textarea>
-                                        </div>
-                                        <button class="btn btn-primary" type="submit" name="action" value="guardarReceta">Guardar</button>
+                                                foreach ($recetaLista as $receta) {
+                                                    
+                                                    $ingredientes = '';
+                                                    
+                                                    $composicionCRUD = new ComposicionCRUD();
+                                                    $composicionLista = $composicionCRUD->listar();
+                                                    
+                                                    foreach ($composicionLista as $composicion) {
+                                                        if($composicion->receta_nombre->nombre == $receta->nombre){
+                                                            $ingredientes = $ingredientes.$composicion->ingrediente_nombre->nombre.' ';
+                                                        }
+                                                    }
+                                                    
+                                                    $calificacionCRUD = new CalificacionCRUD();
+                                                    $calificacionLista = $calificacionCRUD->listar();
+                                                    $contador = 0; 
+                                                    $acumulador = 0;
+                                                    $propia = 0;
+                                                    foreach ($calificacionLista as $lista){
+                                                        if($lista->receta_nombre->nombre == $receta->nombre){
+                                                            $contador += 1;
+                                                            $acumulador += $lista->valor;
+                                                            if($lista->usuario_nombre->nombre == $_SESSION['usuario']->nombre){
+                                                                $propia = $lista->valor;
+                                                            }
+                                                        }
+                                                    }
+                                                    
+                                                    $promedio = $acumulador / $contador;
+                                                    
+                                                    echo '<tr class="table table-light">
+                                                                <td><a href="verReceta.php?id='.$receta->nombre.'">' . $receta->nombre . '</a></td>
+                                                                <td>' . $ingredientes . '</td>
+                                                                <td><a href="verCocinero.php?id='.$receta->creador->nombre.'">' . $receta->creador->nombre . '</a></td>
+                                                                <td><p>'.$promedio.'</p></td>
+                                                                <td><p>'.$propia.'</p></td>
+                                                              </tr>';
+                                                }
+                                                ?>
+
+                                            </tbody>
+                                        </table>
                                     </form>
                                 </div>
                             </div>
+                            <a href="mainMenuCocinero.php" class="btn btn-primary">Salir</a>
                         </div>
                     </div>
                 </div>
@@ -170,21 +207,10 @@ if (!isset($_SESSION['usuario'])) {
     </body>
     <script>
         var i = 0;
-        
+        var iden = 0;
 
         function clickaction(b) {
-            var iden = b-1;
-            valorSelect = $('#'+(b-2)).val();
-            
-            //alert('indenInput= ' +iden+ '  selectValor= ' + valorSelect + ' valoridBoton= '+b );
-            $('#'+b).html('');
-            $('#'+b).removeClass('btn');
-            $('#'+b).removeClass('btn-success');
-            document.getElementById(iden).setAttribute("name", valorSelect);
-            //$('#'+(b-2)).prop("disabled", true);
-            //$('#'+iden).prop("disabled", true);
-            //$('#'+iden).
-            
+            iden = b;
         }
 
 
@@ -194,36 +220,30 @@ if (!isset($_SESSION['usuario'])) {
             $('#agregar').click(function (e) {
                 var interes = $('#interes').val();
                 var gusto = $('#gusto').val();
-                var opciones = "<?php 
-            
-                $ingredienteCRUD = new IngredienteCRUD();
-                $ingredienteLista = $ingredienteCRUD->listar();
-                
-                foreach ($ingredienteLista as $ingrediente) {
-                    echo "<option value='".$ingrediente->nombre."'>".$ingrediente->nombre." (".$ingrediente->unidad_medida.")"."</option>";
-                }
-            
-            
-            ?>";
+                var opciones = "<?php
+                                                $ingredienteCRUD = new IngredienteCRUD();
+                                                $ingredienteLista = $ingredienteCRUD->listar();
+
+                                                foreach ($ingredienteLista as $ingrediente) {
+                                                    echo "<option value='" . $ingrediente->nombre . "'>" . $ingrediente->nombre . " (" . $ingrediente->unidad_medida . ")" . "</option>";
+                                                }
+                                                ?>";
 
                 var filaNueva = "<tr>" +
-                        "<td><select name='ingrediente' id='" + i + "'>" + opciones +
+                        "<td><select onclick=clickaction(this.id) name='ingrediente' id='" + i + "'>" + opciones +
                         "</select></td>" +
-                        "<td><input name='' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
-                        "<td><div class='btn-confirmar btn btn-success' id='"+(i+2)+"' onclick=clickaction(this.id) >Confirmar</div></td>" +
+                        "<td><input onclick=clickaction(this.id) name class='gusto' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
                         "<td><div class='btn-eliminar btn btn-danger'>Eliminar</div></td>" +
                         "</tr>";
-                i = i + 3;
+                i = i + 2;
                 $('#cuerpo-tabla').append(filaNueva);
-                //$('#interes').val("");
-                //$('#gusto').val("");
+                $('#interes').val("");
+                $('#gusto').val("");
             });
-            
-            $(document).on('click', '.btn-eliminar', function (e) {
-            $(this).parent().parent().remove();
-            });
-            
 
+            $(document).on('click', '.btn-eliminar', function (e) {
+                $(this).parent().parent().remove();
+            });
 
         });
 

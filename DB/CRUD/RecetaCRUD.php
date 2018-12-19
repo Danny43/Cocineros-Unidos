@@ -13,6 +13,7 @@ class RecetaCRUD extends Connection {
 
         $sql = "INSERT INTO receta (nombre, descripcion, creador) VALUES (?,?,?)";
 
+        
         $stmt = $this->miConexion->prepare($sql);
         $stmt->bind_param("sss", $receta->nombre, $receta->descripcion, $receta->creador->nombre);
         $ok = $stmt->execute();
