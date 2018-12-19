@@ -61,7 +61,7 @@ $receta = new RecetaAleatorea();
                             <a class="nav-link js-scroll-trigger" href="#about">Acerca de Nosotros</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#services">Ranking</a>
+                            <a class="nav-link js-scroll-trigger" href="listaRecetasPuntuadas.php">Ver Recetas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="iniciarSesion.php">Entrar</a>
@@ -93,7 +93,7 @@ $receta = new RecetaAleatorea();
             </div>
         </header>
 
-        <section class="bg-primary" id="about">
+        <section class="bg-primary">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -262,7 +262,7 @@ $receta = new RecetaAleatorea();
             </div>
         </section>
 
-        <section class="bg-dark text-white">
+        <section class="bg-dark text-white" id="about">
             <div class="container text-center">
                 <h2 class="mb-4"> Repositorio Github</h2>
                 <a class="btn btn-light btn-xl sr-button" target="_blank" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>

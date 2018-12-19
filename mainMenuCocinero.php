@@ -1,6 +1,10 @@
 
 <?php
 include_once 'Objects/Usuario.php';
+require_once 'RecetaAleatorea.php';
+
+$receta = new RecetaAleatorea();
+
 session_start();
 
 if (isset($_SESSION['usuario'])) {
@@ -45,7 +49,7 @@ if (isset($_SESSION['usuario'])) {
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo.png">Cocineros Unidos</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo.png">  Cocineros Unidos</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -82,19 +86,30 @@ if (isset($_SESSION['usuario'])) {
             </div>
         </header>
 
-        <section class="bg-primary" id="about">
+        <section class="bg-primary">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        Foto de la receta
+                        <p class="text-faded mb-4">Calificacion</p>
+                        <p class="text-faded mb-4"><?php echo $receta->calificacion; ?></p>
+                        <p class="text-faded mb-4">Creador</p>
+                        <p class="text-faded mb-4"><?php echo $receta->nombreCredor; ?></p>
                     </div>
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading text-white">¡Sugerencias para ti!</h2>
+                        <h2><a href="verReceta.php?id=<?php echo $receta->nombreReceta; ?>"><?php echo $receta->nombreReceta; ?></a></h2>
                         <p class="text-faded mb-4">Lista de Ingredientes:</p>
-
+                        <?php
+                        
+                        foreach ($receta->listaIngredientes as $ingre) {
+                            echo '<p class="text-faded mb-4">'.$ingre->nombre.'</p>';
+                        }
+                        
+                        ?>
                     </div>
                     <div class="col">
                         <p class="text-faded mb-4">Preparación</p>
+                        <p class="text-faded mb-4"><?php echo $receta->preparacion; ?></p>
                     </div>
                 </div>
             </div>
@@ -243,7 +258,7 @@ if (isset($_SESSION['usuario'])) {
         <section class="bg-dark text-white">
             <div class="container text-center">
                 <h2 class="mb-4"> Repositorio Github</h2>
-                <a class="btn btn-light btn-xl sr-button" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
+                <a class="btn btn-light btn-xl sr-button" target="_blank" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
             </div>
         </section>
 
