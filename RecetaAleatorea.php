@@ -1,9 +1,9 @@
 <?php
 
-require_once '/db/CRUD/RecetaCRUD';
-require_once '/db/CRUD/UsuarioCRUD';
-require_once '/db/CRUD/ComposicionCRUD';
-require_once '/db/CRUD/CalificacionCRUD';
+require_once 'DB/CRUD/RecetaCRUD.php';
+require_once 'DB/CRUD/UsuarioCRUD.php';
+require_once 'DB/CRUD/ComposicionCRUD.php';
+require_once 'DB/CRUD/CalificacionCRUD.php';
 
 class RecetaAleatorea{
     
@@ -19,9 +19,26 @@ public function __construct(){
     $recetaCRUD = new RecetaCRUD();
     $recetaLista = $recetaCRUD->listar();
     
+    
+    again:
     $elegida = rand(1, count($recetaLista));
     
-    $receta = $recetaLista[$elegida];
+    $receta = 'none';
+    $con = 0;
+    foreach ($recetaLista as $rec) {
+        
+        if($con == $elegida){
+            $receta = $rec;
+        }
+        
+        $con += 1;
+        
+    }
+    
+    if($receta == 'none'){
+        goto again;
+    }
+    
     
     $this->nombreReceta = $receta->nombre;
     $this->nombreCredor = $receta->creador->nombre;
@@ -35,7 +52,7 @@ public function __construct(){
     
     foreach ($calificacionLista as $cali) {
         
-        if($cali->receta_nombre == $receta->nombre){
+        if($cali->receta_nombre->nombre == $receta->nombre){
             $contador += 1;
             $acumulador += $cali->valor;
         }
@@ -51,7 +68,7 @@ public function __construct(){
     
     foreach ($composicionLista as $compo) {
         
-        if($compo->receta_nombre == $receta->nombre){
+        if($compo->receta_nombre->nombre == $receta->nombre){
             $listaCositas[] = $compo->ingrediente_nombre;
         }
         
