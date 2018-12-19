@@ -77,17 +77,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        Foto del chef
+                        Foto de la receta
                     </div>
                     <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="section-heading text-white">¡Receta del Día!</h2>
-                        <h2 for="radio1">★★★★★</h2>
-                        <hr class="light my-4">
+                        <h2 class="section-heading text-white">¡Sugerencias para ti!</h2>
                         <p class="text-faded mb-4">Lista de Ingredientes:</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Preparación</a>
+                        
                     </div>
                     <div class="col">
-                        FOTO de la receta
+                        <p class="text-faded mb-4">Preparación</p>
                     </div>
                 </div>
             </div>
