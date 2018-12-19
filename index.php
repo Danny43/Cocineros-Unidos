@@ -1,3 +1,14 @@
+<?php
+
+//require_once '/DB/CRUD/RecetaCRUD.php';
+//require_once '/DB/CRUD/UsuarioCRUD.php';
+//require_once '/DB/CRUD/ComposicionCRUD.php';
+//require_once '/DB/CRUD/CalificacionCRUD.php';
+require_once 'RecetaAleatorea.php';
+
+$receta = new RecetaAleatorea();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +34,15 @@
 
         <!-- Custom styles for this template -->
         <link href="css/creative.min.css" rel="stylesheet">
+        
+        <style>
+            
+            a{
+                color: white;
+            }
+            
+            
+        </style>
 
     </head>
 
@@ -77,15 +97,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        Foto de la receta
+                        <p class="text-faded mb-4">Calificacion</p>
+                        <p class="text-faded mb-4"><?php echo $receta->calificacion; ?></p>
+                        <p class="text-faded mb-4">Creador</p>
+                        <p class="text-faded mb-4"><?php echo $receta->nombreCredor; ?></p>
                     </div>
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading text-white">¡Sugerencias para ti!</h2>
+                        <h2><a href="verReceta.php?id=<?php echo $receta->nombreReceta; ?>"><?php echo $receta->nombreReceta; ?></a></h2>
                         <p class="text-faded mb-4">Lista de Ingredientes:</p>
+                        <?php
                         
+                        foreach ($receta->listaIngredientes as $ingre) {
+                            echo '<p class="text-faded mb-4">'.$ingre->nombre.'</p>';
+                        }
+                        
+                        ?>
                     </div>
                     <div class="col">
                         <p class="text-faded mb-4">Preparación</p>
+                        <p class="text-faded mb-4"><?php echo $receta->preparacion; ?></p>
                     </div>
                 </div>
             </div>
@@ -234,7 +265,7 @@
         <section class="bg-dark text-white">
             <div class="container text-center">
                 <h2 class="mb-4"> Repositorio Github</h2>
-                <a class="btn btn-light btn-xl sr-button" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
+                <a class="btn btn-light btn-xl sr-button" target="_blank" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
             </div>
         </section>
         <!-- Bootstrap core JavaScript -->
