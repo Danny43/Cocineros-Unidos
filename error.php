@@ -7,4 +7,3 @@ foreach ($_SESSION['listaDeIngredientes'] as $lista){
 }
     
 
-echo 'toda esta madre da error';

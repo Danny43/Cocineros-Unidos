@@ -136,52 +136,5 @@ if (!isset($_SESSION['usuario'])) {
         <script src="js/creative.min.js"></script>
 
     </body>
-    <script>
-        var i = 0;
-        var iden = 0;
-
-        function clickaction(b) {
-            iden = b;
-        }
-
-
-        $(document).ready(function (e) {
-
-
-            $('#agregar').click(function (e) {
-                var interes = $('#interes').val();
-                var gusto = $('#gusto').val();
-                var opciones = "<?php 
-            
-                $ingredienteCRUD = new IngredienteCRUD();
-                $ingredienteLista = $ingredienteCRUD->listar();
-                
-                foreach ($ingredienteLista as $ingrediente) {
-                    echo "<option value='".$ingrediente->nombre."'>".$ingrediente->nombre." (".$ingrediente->unidad_medida.")"."</option>";
-                }
-            
-            
-            ?>";
-
-                var filaNueva = "<tr>" +
-                        "<td><select onclick=clickaction(this.id) name='ingrediente' id='" + i + "'>" + opciones +
-                        "</select></td>" +
-                        "<td><input onclick=clickaction(this.id) name class='gusto' id='" + (i + 1) + "' /><div class='textoError' id='" + "g" + (i + 1) + "'></div></td>" +
-                        "<td><div class='btn-eliminar btn btn-danger'>Eliminar</div></td>" +
-                        "</tr>";
-                i = i + 2;
-                $('#cuerpo-tabla').append(filaNueva);
-                $('#interes').val("");
-                $('#gusto').val("");
-            });
-            
-            $(document).on('click', '.btn-eliminar', function (e) {
-            $(this).parent().parent().remove();
-            });
-
-        });
-
-
-    </script>
-
+    
 </html>
