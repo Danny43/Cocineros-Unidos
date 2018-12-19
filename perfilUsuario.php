@@ -89,22 +89,22 @@ if (!isset($_SESSION['usuario'])) {
                             <?php
                             if ($_SESSION['usuario']->rol == 'administrador') {
                                 echo '<a class="nav-link js-scroll-trigger" href="#services">Services</a>';
-                            }else{
+                            } else {
                                 echo '<a class="nav-link js-scroll-trigger" href="listaRecetasPuntuadas.php">Top Recetas</a>';
                             }
                             ?>
-                            
+
                         </li>
                         <li class="nav-item">
                             <?php
                             if ($_SESSION['usuario']->rol == 'administrador') {
                                 echo '<a class="nav-link js-scroll-trigger" href="administracion.php">Administracion</a>';
-                            }else{
+                            } else {
                                 echo '<a class="nav-link js-scroll-trigger" href="">Portfolio</a>';
                             }
                             ?>
-                            
-                            
+
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="cerrarSesion.php">Cerrar Sesion</a>
@@ -121,70 +121,63 @@ if (!isset($_SESSION['usuario'])) {
                         <div class="card w-100 tarjetaInicioSesion animated bounceInDown">
                             <div class="card-body">
                                 <img class="logo" src="img/logo.png"/>
-                                <h2 class="titulo">Todas Recetas</h2>
+                                <h2 class="titulo"><?php
+                                    $usuarioCRUD = new UsuarioCRUD();
+                                    $usuarioLista = $usuarioCRUD->listar();
+                                    $chef = '';
+                                    foreach ($usuarioLista as $usuario) {
+
+                                        if ($usuario->nombre == $_GET['id']) {
+                                            $chef = $usuario;
+                                        }
+                                    }
+
+                                    echo $chef->nombre;
+                                    ?></h2>
                                 <div class="tarjetaFormulario">
-                                    <form action="acciones.php" method="POST">
-                                        <table class="table table-warning" >
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Ingredientes</th>
-                                                    <th scope="col">Creador</th>
-                                                    <th scope="col">Puntuacion General</th>
-                                                    <th scope="col">Mi Puntuacion</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
+                                    <div class="row">
+                                        <div class="col-md-6 mx-auto">
+                                            <h4 class="section-heading text-white">Tipo de Usuario</h4>
+                                            <p> <?php echo $chef->rol; ?> </p>
+                                            <h4 class="section-heading text-white">Puntuación General:</h4>
+                                            <p> <?php
+                                                $calificacionCRUD = new CalificacionCRUD();
+                                                $calificacionLista = $calificacionCRUD->listar();
+                                                $contador = 0;
+                                                $acumulador = 0;
+                                                foreach ($calificacionLista as $cali) {
+
+                                                    if ($cali->usuario_nombre->nombre == $chef->nombre) {
+                                                        $acumulador += $cali->valor;
+                                                        $contador += 1;
+                                                    }
+                                                }
+
+                                                echo $acumulador / $contador;
+                                                ?> </p>
+                                        </div>
+                                        <div class="col-md-6 mx-auto">
+                                            <h4 class="section-heading text-white">Cantidad de Recetas:</h4>
+                                            <p> <?php
                                                 $recetaCRUD = new RecetaCRUD();
                                                 $recetaLista = $recetaCRUD->listar();
-
-                                                foreach ($recetaLista as $receta) {
-                                                    
-                                                    $ingredientes = '';
-                                                    
-                                                    $composicionCRUD = new ComposicionCRUD();
-                                                    $composicionLista = $composicionCRUD->listar();
-                                                    
-                                                    foreach ($composicionLista as $composicion) {
-                                                        if($composicion->receta_nombre->nombre == $receta->nombre){
-                                                            $ingredientes = $ingredientes.$composicion->ingrediente_nombre->nombre.' ';
-                                                        }
+                                                $canti = 0;
+                                                foreach ($recetaLista as $rec) {
+                                                    if ($rec->creador->nombre == $chef->nombre) {
+                                                        $canti += 1;
                                                     }
-                                                    
-                                                    $calificacionCRUD = new CalificacionCRUD();
-                                                    $calificacionLista = $calificacionCRUD->listar();
-                                                    $contador = 0; 
-                                                    $acumulador = 0;
-                                                    $propia = 0;
-                                                    foreach ($calificacionLista as $lista){
-                                                        if($lista->receta_nombre->nombre == $receta->nombre){
-                                                            $contador += 1;
-                                                            $acumulador += $lista->valor;
-                                                            if($lista->usuario_nombre->nombre == $_SESSION['usuario']->nombre){
-                                                                $propia = $lista->valor;
-                                                            }
-                                                        }
-                                                    }
-                                                    
-                                                    $promedio = $acumulador / $contador;
-                                                    
-                                                    echo '<tr class="table table-light">
-                                                                <td><a href="verReceta.php?id='.$receta->nombre.'">' . $receta->nombre . '</a></td>
-                                                                <td>' . $ingredientes . '</td>
-                                                                <td><a href="perfilUsuario.php?id='.$receta->creador->nombre.'">' . $receta->creador->nombre . '</a></td>
-                                                                <td><p>'.$promedio.'</p></td>
-                                                                <td><p>'.$propia.'</p></td>
-                                                              </tr>';
                                                 }
-                                                ?>
-
-                                            </tbody>
-                                        </table>
-                                    </form>
+                                                
+                                                echo $canti;
+                                                
+                                                ?> </p>
+                                            <!--<h4 class="section-heading text-white">puntuación:</h4>
+                                            <p> valoracion receta </p>-->
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <a href="mainMenuCocinero.php" class="btn btn-primary">Salir</a>
+                            </div>                           
+                            <a href="listaRecetasPuntuadas.php" class="btn btn-primary">volver</a>
                         </div>
                     </div>
                 </div>

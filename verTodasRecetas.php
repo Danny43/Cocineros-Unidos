@@ -137,7 +137,7 @@ if (!isset($_SESSION['usuario'])) {
                                                     echo '<tr class="table table-light">
                                                                 <td><a href="verReceta.php?id='.$receta->nombre.'">' . $receta->nombre . '</a></td>
                                                                 <td>' . $ingredientes . '</td>
-                                                                <td><a href="verCocinero.php?id='.$receta->creador->nombre.'">' . $receta->creador->nombre . '</a></td>
+                                                                <td><a href="perfilUsuario.php?id='.$receta->creador->nombre.'">' . $receta->creador->nombre . '</a></td>
                                                               </tr>';
                                                 }
                                                 ?>
