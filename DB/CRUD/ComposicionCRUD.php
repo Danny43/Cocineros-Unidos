@@ -14,12 +14,12 @@ include_once 'DB/Connection.php';
 
         $this->conectar();
 
-        $sql = "INSERT INTO composicon (ingrediente_nombre, receta_nombre, cantidad) VALUES (?,?,?)";
+        $sql = "INSERT INTO composicion (ingrediente_nombre, receta_nombre, cantidad) VALUES (?,?,?)";
 
         $stmt = $this->miConexion->prepare($sql);
-        $stmt->bind_param("ssi", $composicion->ingrediente_nombre->nombre, $composicion->receta_nombre->receta, $composicion->cantidad);
+       
+        $stmt->bind_param("ssi", $composicion->ingrediente_nombre->nombre, $composicion->receta_nombre->nombre, $composicion->cantidad);
         $ok = $stmt->execute();
-
         $this->desconectar();
 
         return $ok;
