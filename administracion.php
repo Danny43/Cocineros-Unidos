@@ -89,10 +89,10 @@ if (!isset($_SESSION['usuario'])) {
                             <a class="nav-link js-scroll-trigger" href="nuevaReceta.php">Nueva Receta</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                            <a class="nav-link js-scroll-trigger" href="#">Todas las Recetas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                            <a class="nav-link js-scroll-trigger" href="verTodosUsuarios.php">Usuarios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="cerrarSesion.php">Cerrar Sesion</a>

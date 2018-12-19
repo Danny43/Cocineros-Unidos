@@ -46,7 +46,7 @@ if (isset($_SESSION['usuario'])) {
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo.png">Cocineros Unidos</a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php"><img src="img/logo.png">  Cocineros Unidos</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -94,7 +94,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="col-lg-8 mx-auto text-center">
                         <h2 class="section-heading text-white">¡Receta del Día!</h2>
-                        <img src="img/stars.png"/>
+                        <h2 class="amarillo estrellita" for="radio1">★★★★★</h2>
                         <hr class="light my-4">
                         <p class="text-faded mb-4">Lista de Ingredientes:</p>
                         <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Preparación</a>
@@ -149,7 +149,7 @@ if (isset($_SESSION['usuario'])) {
             </div>
         </section>
 
-        <section class="p-0" id="portfolio">
+         <section class="p-0" id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row no-gutters popup-gallery">
                     <div class="col-lg-4 col-sm-6">
@@ -158,7 +158,7 @@ if (isset($_SESSION['usuario'])) {
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        aprende a cocinar:
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
                                         Paila Marina
@@ -173,7 +173,7 @@ if (isset($_SESSION['usuario'])) {
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        aprende a cocinar:
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
                                         Salmón pochado con reducción cítrica
@@ -188,7 +188,7 @@ if (isset($_SESSION['usuario'])) {
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        aprende a cocinar:
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
                                         Tilapia con salsa merlot y merquen
@@ -198,45 +198,45 @@ if (isset($_SESSION['usuario'])) {
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/4.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/4.jpg" alt="">
+                        <a class="portfolio-box" href="img/5.jpg">
+                            <img class="img-fluid" src="img/5.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Pan de Pascua
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/5.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/5.jpg" alt="">
+                        <a class="portfolio-box" href="img/6.jpg">
+                            <img class="img-fluid" src="img/6.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Cola de Mono
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="img/portfolio/fullsize/6.jpg">
-                            <img class="img-fluid" src="img/portfolio/thumbnails/6.jpg" alt="">
+                        <a class="portfolio-box" href="img/7.jpg">
+                            <img class="img-fluid" src="img/7.jpg" alt="">
                             <div class="portfolio-box-caption">
                                 <div class="portfolio-box-caption-content">
                                     <div class="project-category text-faded">
-                                        Category
+                                        aprende a hacer:
                                     </div>
                                     <div class="project-name">
-                                        Project Name
+                                        Anticuchos de Sobrecostilla
                                     </div>
                                 </div>
                             </div>
@@ -248,66 +248,10 @@ if (isset($_SESSION['usuario'])) {
 
         <section class="bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
+                <h2 class="mb-4"> Repositorio Github</h2>
+                <a class="btn btn-light btn-xl sr-button" href="https://github.com/Danny43/Cocineros-Unidos/">VISITANOS</a>
             </div>
         </section>
-
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="section-heading">Let's Get In Touch!</h2>
-                        <hr class="my-4">
-                        <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 ml-auto text-center">
-                        <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
-                        <p>123-456-6789</p>
-                    </div>
-                    <div class="col-lg-4 mr-auto text-center">
-                        <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
-                        <p>
-                            <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-dark text-white">
-            <div class="container text-center">
-                <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
-                <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto text-center">
-                        <h2 class="section-heading">Let's Get In Touch!</h2>
-                        <hr class="my-4">
-                        <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 ml-auto text-center">
-                        <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
-                        <p>123-456-6789</p>
-                    </div>
-                    <div class="col-lg-4 mr-auto text-center">
-                        <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
-                        <p>
-                            <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
